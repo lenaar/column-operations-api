@@ -41,6 +41,30 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
 
+  /api/v1/data:calculateFormula:
+    post:
+      tags:
+        - Calculations
+      summary: Calculate formula for each row
+      parameters:
+        - in: body
+          name: request
+          required: true
+          schema:
+            $ref: '#/definitions/FormulaRequest'
+      responses:
+        200:
+          description: Returns the calculated formula result for each row
+          schema:
+            $ref: '#/definitions/FormulaResponse'
+        400:
+          description: Bad request - invalid formula or request format
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
 
 definitions:
   ErrorResponse:
@@ -71,6 +95,22 @@ definitions:
         items:
           type: integer
 
+  FormulaRequest:
+    type: object
+    required:
+      - myFormula
+    properties:
+      myFormula:
+        type: string
+        example: "column_1 + column_2 * column_3"
+
+  FormulaResponse:
+    type: object
+    properties:
+      result:
+        type: array
+        items:
+          type: integer
 
   DataRow:
     type: object

@@ -30,3 +30,8 @@ class SumColumnsRequest(BaseModel):
 class SumColumnsResponse(BaseModel):
     result: List[int]
 
+class FormulaRequest(BaseModel):
+    myFormula: str
+
+class FormulaResponse(BaseModel):
+    result: List[int]
