@@ -1,0 +1,48 @@
+swagger: "2.0"
+info:
+  title: "Column Operations API"
+  version: "1.0.0"
+  description: "Column Operations API v1 - Add columns and calculate formulas"
+
+paths:
+  /api/v1/data:
+    get:
+      tags:
+        - Data
+      summary: View all data in the database
+      responses:
+        200:
+          description: Returns all data from the database
+          schema:
+            $ref: '#/definitions/DataResponse'
+
+
+definitions:
+
+  DataRow:
+    type: object
+    properties:
+      id:
+        type: integer
+      column_1:
+        type: integer
+      column_2:
+        type: integer
+      column_3:
+        type: integer
+      column_4:
+        type: integer
+      column_5:
+        type: integer
+    # Note: This is generated from config/columns.py
+    # To add/remove columns, update config/columns.py and regenerate this file
+
+  DataResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/DataRow'
+      count:
+        type: integer
