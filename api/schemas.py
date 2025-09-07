@@ -22,3 +22,11 @@ DataRow = create_data_row_model()
 class DataResponse(BaseModel):
     data: List[DataRow]
     count: int
+
+class SumColumnsRequest(BaseModel):
+    the_first_col_name: str
+    my_second_colname: str
+
+class SumColumnsResponse(BaseModel):
+    result: List[int]
+

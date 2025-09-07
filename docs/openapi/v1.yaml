@@ -16,8 +16,61 @@ paths:
           schema:
             $ref: '#/definitions/DataResponse'
 
+  /api/v1/data:sumColumns:
+    post:
+      tags:
+        - Calculations
+      summary: Add two columns row by row
+      parameters:
+        - in: body
+          name: request
+          required: true
+          schema:
+            $ref: '#/definitions/SumColumnsRequest'
+      responses:
+        200:
+          description: Returns the sum of two columns for each row
+          schema:
+            $ref: '#/definitions/SumColumnsResponse'
+        400:
+          description: Bad request - invalid column names or request format
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
 
 definitions:
+  ErrorResponse:
+    type: object
+    properties:
+      error:
+        type: string
+        example: "Invalid column name: column_11"
+
+  SumColumnsRequest:
+    type: object
+    required:
+      - the_first_col_name
+      - my_second_colname
+    properties:
+      the_first_col_name:
+        type: string
+        example: "column_1"
+      my_second_colname:
+        type: string
+        example: "column_5"
+
+  SumColumnsResponse:
+    type: object
+    properties:
+      result:
+        type: array
+        items:
+          type: integer
+
 
   DataRow:
     type: object
