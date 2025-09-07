@@ -14,6 +14,7 @@ app.register_blueprint(api, url_prefix='/api/v1')
 
 @app.route('/')
 def index():
+    """Index route and health check"""
     return "Column Operations API - Check /apidocs for API documentation"
 
 if __name__ == '__main__':
